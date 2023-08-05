@@ -36,6 +36,22 @@ authenticate their identities within the app.
 development process, and outcomes.
 ```
 
+Learning Materials: 
+
+https://books.google.com/books?hl=en&lr=&id=ICSIEAAAQBAJ&oi=fnd&pg=PA4&dq=wallet+web3&ots=zSktb2F8um&sig=HnrhzuaNhYh8W54ZGu2UJ5ZUfME#v=onepage&q=wallet%20web3&f=false
+
+[bitcoin.pdf](https://github.com/zhihuizhang0625/Web3-Independent-Study/files/12268066/bitcoin.pdf)
+
+https://www.sciencedirect.com/science/article/pii/S2352864817302900
+
+https://www.mdpi.com/1999-5903/11/12/258
+
+https://www.sciencedirect.com/science/article/pii/S1319157822000891
+
+[Digitalization_of_Land_Records_From_Pape.pdf](https://github.com/zhihuizhang0625/Web3-Independent-Study/files/12268068/Digitalization_of_Land_Records_From_Pape.pdf)
+
+https://ieeexplore.ieee.org/abstract/document/10110018
+
 ## July 3 - July 7
 
 - Research Blockchain and Web3 Concepts:
@@ -52,6 +68,12 @@ development process, and outcomes.
 
 Learning Materials: 
 
+https://arxiv.org/abs/2304.06111
+
+https://link.springer.com/chapter/10.1007/978-981-19-8069-5_1
+
+https://ieeexplore.ieee.org/abstract/document/9428608
+
 https://www.youtube.com/watch?v=aVQJGr2J8io
 
 https://nakamoto.com/introduction-to-cryptocurrency/
@@ -65,6 +87,8 @@ https://nakamoto.com/the-cypherpunks/
 
 Learning Materials:
 
+https://www.sciencedirect.com/science/article/abs/pii/S0007681322000714
+
 https://www.youtube.com/watch?v=nHhAEkG1y2U
 
 https://aws.amazon.com/blockchain/decentralization-in-blockchain/
@@ -73,7 +97,10 @@ https://www.youtube.com/watch?v=JAOrvZgebgs
 
 https://cointelegraph.com/explained/what-are-decentralized-social-networks
 
+[drewscott_gkorpal_web3.pdf](https://github.com/zhihuizhang0625/Web3-Independent-Study/files/12268075/drewscott_gkorpal_web3.pdf)
+
 ### Consensus Mechanisms
+
 <img width="659" alt="Screenshot 2023-08-02 at 7 23 27 PM" src="https://github.com/zhihuizhang0625/web3/assets/85580892/4800b70d-278e-4d87-8fcd-07b63b011dfb">
 
 <img width="644" alt="Screenshot 2023-08-02 at 7 24 19 PM" src="https://github.com/zhihuizhang0625/web3/assets/85580892/eb9dba6a-3ee4-4589-b8cd-8741dcbf0d03">
@@ -96,7 +123,115 @@ https://chain.link/education/web3
 
 ### Solidity
 
+#### State Variables
+```
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.4.0 <0.9.0;
+
+contract SimpleStorage {
+    uint storedData; // State variable
+    // ...
+}
+```
+
+#### Functions
+```
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.7.1 <0.9.0;
+
+contract SimpleAuction {
+    function bid() public payable { // Function
+        // ...
+    }
+}
+
+// Helper function defined outside of a contract
+function helper(uint x) pure returns (uint) {
+    return x * 2;
+}
+```
+#### Function Modifiers
+```
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.4.22 <0.9.0;
+
+contract Purchase {
+    address public seller;
+
+    modifier onlySeller() { // Modifier
+        require(
+            msg.sender == seller,
+            "Only seller can call this."
+        );
+        _;
+    }
+
+    function abort() public view onlySeller { // Modifier usage
+        // ...
+    }
+}
+```
+#### Events
+```// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.4.21 <0.9.0;
+
+contract SimpleAuction {
+    event HighestBidIncreased(address bidder, uint amount); // Event
+
+    function bid() public payable {
+        // ...
+        emit HighestBidIncreased(msg.sender, msg.value); // Triggering event
+    }
+}
+```
+#### Errors
+```// SPDX-License-Identifier: GPL-3.0
+pragma solidity ^0.8.4;
+
+/// Not enough funds for transfer. Requested `requested`,
+/// but only `available` available.
+error NotEnoughFunds(uint requested, uint available);
+
+contract Token {
+    mapping(address => uint) balances;
+    function transfer(address to, uint amount) public {
+        uint balance = balances[msg.sender];
+        if (balance < amount)
+            revert NotEnoughFunds(amount, balance);
+        balances[msg.sender] -= amount;
+        balances[to] += amount;
+        // ...
+    }
+}
+```
+#### Struct Types
+```// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.4.0 <0.9.0;
+
+contract Ballot {
+    struct Voter { // Struct
+        uint weight;
+        bool voted;
+        address delegate;
+        uint vote;
+    }
+}
+```
+#### Enum Types
+```
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.4.0 <0.9.0;
+
+contract Purchase {
+    enum State { Created, Locked, Inactive } // Enum
+}
+```
+
 Learning Materials:
+
+https://link.springer.com/chapter/10.1007/978-981-16-0171-2_52
+
+https://ieeexplore.ieee.org/abstract/document/8500488
 
 https://chain.link/education/smart-contracts
 
@@ -113,9 +248,15 @@ https://www.youtube.com/watch?v=umepbfKp5rI&t=6s
 
 Learning Materials:
 
+https://ieeexplore.ieee.org/abstract/document/10174988
+
 https://www.youtube.com/watch?v=sas02qSFZ74
 
 https://www.sciencedirect.com/topics/computer-science/smart-contract
+
+https://ieeexplore.ieee.org/abstract/document/8976179
+
+https://ieeexplore.ieee.org/abstract/document/8494045
 
 https://www.computerworld.com/article/3412140/whats-a-smart-contract-and-how-does-it-work.html
 
@@ -310,7 +451,15 @@ export const StateContextProvider = ({ children }) => {
   const connect = useMetamask();
  
 ```
-Used Resources:
+Learning Resources:
+
+https://ieeexplore.ieee.org/abstract/document/9993805
+
+https://www.mdpi.com/2076-3417/12/21/11180
+
+https://arxiv.org/abs/2306.08170
+
+https://arxiv.org/abs/2206.08821
 
 https://metamask.io/
 
@@ -555,7 +704,4 @@ e0a0b-7593-4fc8-8b2a-d48022a433f1">
 
 <img width="1728" alt="Screenshot 2023-08-04 at 10 27 02 AM" src="https://github.com/zhihuizhang0625/web3/assets/85580892/792c0c61-6fe5-43e5-be0c-2821dda01bf1">
 
-Deployed link:
-
-https://64bf54d7dc59c621f9fa5d0e--peppy-nougat-acecc2.netlify.app/
 
